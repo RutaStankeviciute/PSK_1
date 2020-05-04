@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+<h:head/>
+<h:body>
+    <h2>Stores:</h2>
+    <ol>
+        <ui:repeat value="#{storesMyBatis.allStores}" var="store">
+            <li><h:link value="#{store.name}" outcome="customers?storeId=#{store.id}" /></li>
+        </ui:repeat>
+    </ol>
+    <h:form>
+        <h:inputText value="#{storesMyBatis.storeToCreate.name}" required="true" />
+        <h:commandButton value="Add new store" action="#{storesMyBatis.createStore}" />
+    </h:form>
+    <h:link value="Back to index" outcome="/index"/>
+</h:body>
+</html>
