@@ -11,11 +11,11 @@ import java.util.Objects;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "Customer.findAll", query = "select a from Customer as a")
+        @NamedQuery(name = "Purchase.findAll", query = "select p from Purchase as p")
 })
-@Table(name = "CUSTOMER")
+@Table(name = "PURCHASE")
 @Getter @Setter
-public class Customer implements Serializable {
+public class Purchase implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,27 +25,25 @@ public class Customer implements Serializable {
     @Column(name = "NAME")
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name="STORE_ID")
-    private Store store;
+    @ManyToMany
+    @JoinColumn(name="CUSTOMER_ID")
+    private List<Customer> customers = new ArrayList<>();
 
-    public Customer() {
+    public Purchase(){
+
     }
-
-    @ManyToMany(mappedBy = "customers")
-    private List<Purchase> purchases = new ArrayList<>();
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Customer customer = (Customer) o;
-        return Objects.equals(id, customer.id) &&
-                Objects.equals(name, customer.name);
+        Purchase purchase = (Purchase) o;
+        return Objects.equals(name, purchase.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+
+        return Objects.hash(name);
     }
 }
