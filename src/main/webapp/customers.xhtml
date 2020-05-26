@@ -10,7 +10,7 @@
     <h2>Customers who visited #{customersForStore.store.name} store:</h2>
     <ol>
         <ui:repeat value="#{customersForStore.store.customers}" var="customer">
-            <li>#{customer.name}</li>
+            <li><h:link value="#{customer.name} #{customer.personalCode}" outcome="customerDetails?customerId=#{customer.id}" /></li>
         </ui:repeat>
     </ol>
     <h:form>

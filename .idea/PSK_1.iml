@@ -26,7 +26,7 @@
       <configuration>
         <setting name="validation-enabled" value="true" />
         <datasource-mapping>
-          <factory-entry name="CustomersPU" />
+          <factory-entry name="CustomersPU" value="75269c46-3b0a-4030-b84a-0397680945f4" />
         </datasource-mapping>
         <naming-strategy-map />
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/target/classes/META-INF/persistence.xml" />
@@ -50,5 +50,7 @@
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.projectlombok:lombok:1.18.10" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.mybatis:mybatis:3.4.4" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.mybatis:mybatis-cdi:1.0.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.deltaspike.core:deltaspike-core-api:1.7.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: org.apache.deltaspike.core:deltaspike-core-impl:1.7.2" level="project" />
   </component>
 </module>

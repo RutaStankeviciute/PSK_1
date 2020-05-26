@@ -1,6 +1,7 @@
 package vu.lt.persistence;
 
 import vu.lt.entities.Store;
+import vu.lt.interceptors.LoggedInvocation;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -8,25 +9,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
-@ApplicationScoped
-public class StoresDAO {
+public interface StoresDAO {
 
-    @Inject
-    private EntityManager em;
+    List<Store> loadAll();
 
-    public List<Store> loadAll() {
-        return em.createNamedQuery("Store.findAll", Store.class).getResultList();
-    }
+    void setEm(EntityManager em);
 
-    public void setEm(EntityManager em) {
-        this.em = em;
-    }
+    void persist(Store store);
 
-    public void persist(Store store){
-        this.em.persist(store);
-    }
-
-    public Store findOne(Integer id) {
-        return em.find(Store.class, id);
-    }
+    Store findOne(Integer id);
 }

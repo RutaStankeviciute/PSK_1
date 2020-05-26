@@ -25,9 +25,16 @@ public class Customer implements Serializable {
     @Column(name = "NAME")
     private String name;
 
+    @Column(name = "PERSONAL_CODE")
+    private Integer personalCode;
+
     @ManyToOne
     @JoinColumn(name="STORE_ID")
     private Store store;
+
+    @Version
+    @Column(name = "OPT_LOCK_VERSION")
+    private Integer optLockVersion;
 
     public Customer() {
     }

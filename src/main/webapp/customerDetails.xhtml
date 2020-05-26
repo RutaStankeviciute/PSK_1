@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head/>
+<h:body>
+    <h2>Customer #{updateCustomer.customer.name}:</h2>
+    <h:form>
+        <h:outputText value="Personal code: "/>
+        <h:inputText a:placeholder="Enter the code" value="#{updateCustomer.customer.personalCode}" required="true" />
+        <h:commandButton value="update" action="#{updateCustomer.updateCustomerPersonalCode()}">
+            <f:param name="customerId" value="#{updateCustomer.customer.id}" />
+        </h:commandButton>
+        <h:outputText value="Value was already modified by other user. If you want to override it - try again" rendered="#{param['error'] == 'optimistic-lock-exception'}" />
+    </h:form>
+    <h:form>
+        <h:outputText value="#{generateCustomerPersonalCode.personalCodeGenerationStatus}" />
+        <h:commandButton value="Generate customer personal code?" disabled="#{generateCustomerPersonalCode.personalCodeGenerationRunning}" action="#{generateCustomerPersonalCode.generateNewPersonalCode()}">
+            <f:param name="customerId" value="#{updateCustomer.customer.id}" />
+        </h:commandButton>
+    </h:form>
+
+    <h2>Purchases of customer #{purchasesForCustomer.customer.name}:</h2>
+    <ol>
+        <ui:repeat value="#{purchasesForCustomer.customer.purchases}" var="purchase">
+            <li>#{purchase.name}</li>
+        </ui:repeat>
+    </ol>
+    <h:link outcome="index" value="Back to home page"/>
+</h:body>
+</html>

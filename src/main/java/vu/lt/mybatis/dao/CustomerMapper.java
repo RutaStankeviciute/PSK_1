@@ -45,4 +45,6 @@ public interface CustomerMapper {
      * @mbg.generated Tue May 12 11:36:32 EEST 2020
      */
     int updateByPrimaryKey(Customer record);
+
+    List<Customer> selectWithName(String a);
 }
